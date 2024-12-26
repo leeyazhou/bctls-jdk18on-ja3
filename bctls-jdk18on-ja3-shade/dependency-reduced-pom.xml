@@ -3,7 +3,7 @@
   <parent>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
     <groupId>com.github.leeyazhou</groupId>
-    <version>1.78.1.0-SNAPSHOT</version>
+    <version>1.78.1.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>bctls-jdk18on-ja3-shade</artifactId>
@@ -30,6 +30,7 @@
                     <exclude>META-INF/*.SF</exclude>
                     <exclude>META-INF/*.DSA</exclude>
                     <exclude>META-INF/*.RSA</exclude>
+                    <exclude>META-INF/*.MF</exclude>
                   </excludes>
                 </filter>
               </filters>
@@ -54,20 +55,8 @@
     <dependency>
       <groupId>com.github.leeyazhou</groupId>
       <artifactId>bctls-jdk18on-ja3</artifactId>
-      <version>1.78.1.0-SNAPSHOT</version>
+      <version>1.78.1.0</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcutil-jdk18on</artifactId>
-      <version>1.78.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk18on</artifactId>
-      <version>1.78.1</version>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.github.leeyazhou</groupId>
@@ -109,6 +98,18 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib-jdk7</artifactId>
       <version>1.9.25</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcutil-jdk18on</artifactId>
+      <version>1.78.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk18on</artifactId>
+      <version>1.78.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
