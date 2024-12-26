@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.github.leeyazhou</groupId>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
-    <version>1.78.1.0-SNAPSHOT</version>
+    <version>1.78.1.0</version>
   </parent>
   <artifactId>bctls-jdk18on-ja3-shade</artifactId>
   <dependencies>
