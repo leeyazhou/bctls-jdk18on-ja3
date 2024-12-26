@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.bouncycastle.tls.ClientHello;
 
-public interface ExtensionListener {
+public interface TlsExtensionListener {
 
 	void onClientExtensionsBuilt(ClientHello clientHello, Map<Integer, byte[]> clientExtensions) throws IOException;
 

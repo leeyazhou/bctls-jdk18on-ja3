@@ -193,10 +193,10 @@ public abstract class ImpersonatorFactory implements Impersonator, ImpersonatorA
 		}
 	}
 
-	private ExtensionListener extensionListener;
+	private TlsExtensionListener extensionListener;
 
 	@Override
-	public void setExtensionListener(ExtensionListener extensionListener) {
+	public void setExtensionListener(TlsExtensionListener extensionListener) {
 		this.extensionListener = extensionListener;
 	}
 

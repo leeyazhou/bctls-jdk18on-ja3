@@ -7,12 +7,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.bouncycastle.tls.ClientHello;
 
-class SecureRandomWrap extends SecureRandom implements Impersonator {
+public class SecureRandomWrap extends SecureRandom implements Impersonator {
 
 	private static final long serialVersionUID = 1L;
 	private final Impersonator impersonator;
 
-	SecureRandomWrap(Impersonator impersonator) {
+	public SecureRandomWrap(Impersonator impersonator) {
 		this.impersonator = impersonator;
 	}
 
