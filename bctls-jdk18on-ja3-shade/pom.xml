@@ -31,6 +31,10 @@
                 <includes>
                   <include>com.github.leeyazhou:bctls-jdk18on-ja3</include>
                 </includes>
+                <excludes>
+                  <exclude>org.bouncycastle:bcutil-jdk18on</exclude>
+                  <exclude>org.bouncycastle:bcprov-jdk18on</exclude>
+                </excludes>
               </artifactSet>
               <filters>
                 <filter>
@@ -45,8 +49,12 @@
               </filters>
               <relocations>
                 <relocation>
-                  <pattern>org.bouncycastle</pattern>
-                  <shadedPattern>com.github.leeyazhou.org.bouncycastle</shadedPattern>
+                  <pattern>org.bouncycastle.jsse</pattern>
+                  <shadedPattern>com.github.leeyazhou.org.bouncycastle.jsse</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.bouncycastle.tls</pattern>
+                  <shadedPattern>com.github.leeyazhou.org.bouncycastle.tls</shadedPattern>
                 </relocation>
               </relocations>
               <keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
