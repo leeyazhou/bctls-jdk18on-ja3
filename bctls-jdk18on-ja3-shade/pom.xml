@@ -4,14 +4,14 @@
   <parent>
     <groupId>com.github.leeyazhou</groupId>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
-    <version>1.78.1.0</version>
+    <version>${revision}</version>
   </parent>
   <artifactId>bctls-jdk18on-ja3-shade</artifactId>
   <dependencies>
     <dependency>
       <groupId>com.github.leeyazhou</groupId>
       <artifactId>bctls-jdk18on-ja3</artifactId>
-      <version>${project.version}</version>
+      <version>${revision}</version>
     </dependency>
   </dependencies>
 
