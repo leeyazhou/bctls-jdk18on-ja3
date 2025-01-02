@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.bytesgo</groupId>
@@ -8,7 +9,7 @@
   </parent>
   <groupId>com.github.leeyazhou</groupId>
   <artifactId>bctls-jdk18on-ja3-parent</artifactId>
-  <version>${revision}</version>
+  <version>1.78.1.1</version>
   <packaging>pom</packaging>
   <url>https://github.com/leeyazhou/bctls-jdk18on-ja3</url>
   <licenses>
@@ -32,16 +33,15 @@
     <developerConnection>scm:git:git@github.com:leeyazhou/bctls-jdk18on-ja3.git</developerConnection>
     <url>git@github.com:leeyazhou/bctls-jdk18on-ja3.git</url>
   </scm>
-
   <properties>
-    <bouncycastle.version>1.78.1</bouncycastle.version>
+    <maven.test.skip>false</maven.test.skip>
     <httpclient5.version>5.4.1</httpclient5.version>
-    <kotlin.version>1.9.25</kotlin.version>
+    <revision>1.78.1.1</revision>
+    <bouncycastle.version>1.78.1</bouncycastle.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
-    <maven.test.skip>false</maven.test.skip>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <revision>1.78.1.2</revision>
+    <kotlin.version>1.9.25</kotlin.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -149,22 +149,27 @@
       <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
   <build>
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.1</version>
+      </extension>
+    </extensions>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
         <version>1.6.0</version>
-        <inherited>true</inherited>
         <executions>
           <execution>
             <id>flatten</id>
+            <phase>process-resources</phase>
             <goals>
               <goal>flatten</goal>
             </goals>
-            <phase>process-resources</phase>
             <configuration>
               <updatePomFile>true</updatePomFile>
               <flattenMode>resolveCiFriendliesOnly</flattenMode>
@@ -177,20 +182,14 @@
           </execution>
           <execution>
             <id>flatten.clean</id>
+            <phase>clean</phase>
             <goals>
               <goal>clean</goal>
             </goals>
-            <phase>clean</phase>
           </execution>
         </executions>
+        <inherited>true</inherited>
       </plugin>
     </plugins>
-    <extensions>
-      <extension>
-        <groupId>kr.motd.maven</groupId>
-        <artifactId>os-maven-plugin</artifactId>
-        <version>1.7.1</version>
-      </extension>
-    </extensions>
   </build>
 </project>

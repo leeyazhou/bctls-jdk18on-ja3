@@ -1,12 +1,5 @@
 package org.bouncycastle.jsse.provider;
 
-import org.bouncycastle.tls.TlsClientProtocol;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.leeyazhou.impersonator.Impersonator;
-import com.github.leeyazhou.impersonator.ImpersonatorFactory;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +7,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
+import org.bouncycastle.tls.TlsClientProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.github.leeyazhou.impersonator.Impersonator;
+import com.github.leeyazhou.impersonator.util.GreaseUtil;
 
 class ImpersonateSSLSocketWrap extends ProvSSLSocketWrap {
 
@@ -35,7 +33,7 @@ class ImpersonateSSLSocketWrap extends ProvSSLSocketWrap {
         ProvSSLContextSpi context = contextData.getContext();
         List<String> supportedCipherSuites = Arrays.asList(context.getSupportedCipherSuites());
         for (int cipherSuite : cipherSuites) {
-            if (ImpersonatorFactory.isGrease(cipherSuite)) {
+            if (GreaseUtil.isGrease(cipherSuite)) {
                 continue;
             }
             String name = ProvSSLContextSpi.getCipherSuiteName(cipherSuite);

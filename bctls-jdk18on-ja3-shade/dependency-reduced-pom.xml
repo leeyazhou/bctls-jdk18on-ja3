@@ -3,10 +3,17 @@
   <parent>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
     <groupId>com.github.leeyazhou</groupId>
-    <version>1.78.1.0</version>
+    <version>1.78.1.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>bctls-jdk18on-ja3-shade</artifactId>
+  <version>1.78.1.1</version>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
   <build>
     <plugins>
       <plugin>
@@ -63,7 +70,7 @@
     <dependency>
       <groupId>com.github.leeyazhou</groupId>
       <artifactId>bctls-jdk18on-ja3</artifactId>
-      <version>1.78.1.0</version>
+      <version>1.78.1.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
