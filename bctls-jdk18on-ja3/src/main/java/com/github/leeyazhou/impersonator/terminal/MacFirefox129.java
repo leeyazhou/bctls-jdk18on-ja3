@@ -16,9 +16,9 @@ import org.bouncycastle.tls.TlsUtils;
 import org.bouncycastle.util.encoders.Hex;
 import com.github.leeyazhou.impersonator.AbstractImpersonatorFactory;
 import com.github.leeyazhou.impersonator.TlsExtensionHandler;
-import ja3.okhttp3.Http2Connection;
-import ja3.okhttp3.PriorityFrame;
-import ja3.okhttp3.Settings;
+import com.github.leeyazhou.impersonator.http.Http2Connection;
+import com.github.leeyazhou.impersonator.http.PriorityFrame;
+import com.github.leeyazhou.impersonator.http.Settings;
 
 /**
  * v129.0.2

@@ -30,14 +30,13 @@ import com.github.leeyazhou.impersonator.terminal.MacFirefox129;
 import com.github.leeyazhou.impersonator.terminal.MacSafari;
 import com.github.leeyazhou.impersonator.util.DummyX509KeyManager;
 import com.github.leeyazhou.impersonator.util.GreaseUtil;
-import ja3.okhttp3.Http2Connection;
 
 /**
  * 
  * 
  * @author leeyazhou
  */
-public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory, Impersonator {
+public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory, Impersonator, TlsExtensionHandler {
 
   static {
     Security.addProvider(new BouncyCastleProvider());
@@ -65,7 +64,6 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
   }
 
   private final int[] cipherSuites;
-  private TlsExtensionListener extensionListener;
 
   protected AbstractImpersonatorFactory(String cipherSuites) {
     String[] tokens = cipherSuites.split("-");
@@ -96,12 +94,6 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
       throw new IllegalStateException("newContext", e);
     }
   }
-
-  /**
-   * 4 -> 3 // SETTINGS_MAX_CONCURRENT_STREAMS renumbered. 7 -> 4 // SETTINGS_INITIAL_WINDOW_SIZE
-   * renumbered.
-   */
-  public void onHttp2ConnectionInit(Http2Connection http2Connection) {}
 
   protected final void addSignatureAlgorithmsExtension(Map<Integer, byte[]> clientExtensions,
       SignatureAndHashAlgorithm... signatureAndHashAlgorithms) throws IOException {
@@ -204,16 +196,9 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
     clientExtensions.remove(ExtensionType.status_request_v2);
     clientExtensions.remove(ExtensionType.encrypt_then_mac);
     onSendClientHelloMessageInternal(clientExtensions);
-    if (extensionListener != null) {
-      extensionListener.onClientExtensionsBuilt(clientHello, clientExtensions);
-    }
+    onClientExtensionsBuilt(clientHello, clientExtensions);
   }
 
-
-  @Override
-  public void setExtensionListener(TlsExtensionListener extensionListener) {
-    this.extensionListener = extensionListener;
-  }
 
   protected abstract void onSendClientHelloMessageInternal(Map<Integer, byte[]> clientExtensions) throws IOException;
 

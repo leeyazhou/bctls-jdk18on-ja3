@@ -15,11 +15,10 @@ import org.bouncycastle.tls.SignatureScheme;
 import org.bouncycastle.tls.TlsExtensionsUtils;
 import org.bouncycastle.tls.TlsUtils;
 import com.github.leeyazhou.impersonator.AbstractImpersonatorFactory;
-import com.github.leeyazhou.impersonator.ImpersonatorFactory;
 import com.github.leeyazhou.impersonator.TlsExtensionHandler;
+import com.github.leeyazhou.impersonator.http.Http2Connection;
+import com.github.leeyazhou.impersonator.http.Settings;
 import com.github.leeyazhou.impersonator.util.GreaseUtil;
-import ja3.okhttp3.Http2Connection;
-import ja3.okhttp3.Settings;
 
 /**
  * v17.5 (18618.2.12.111.5, 18618)
@@ -32,11 +31,11 @@ public class MacSafari extends AbstractImpersonatorFactory implements TlsExtensi
     iOS
   }
 
-  public static ImpersonatorFactory newMacSafari() {
+  public static MacSafari newMacSafari() {
     return new MacSafari(Type.MacSafari);
   }
 
-  public static ImpersonatorFactory newIOS() {
+  public static MacSafari newIOS() {
     return new MacSafari(Type.iOS);
   }
 

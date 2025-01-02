@@ -3,8 +3,8 @@
  */
 package com.github.leeyazhou.impersonator.util;
 
-import ja3.okhttp3.Http2Connection;
-import ja3.okhttp3.Settings;
+import com.github.leeyazhou.impersonator.http.Http2Connection;
+import com.github.leeyazhou.impersonator.http.Settings;
 
 /**
  * 

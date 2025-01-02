@@ -9,10 +9,6 @@
   <artifactId>bctls-jdk18on-ja3</artifactId>
   <dependencies>
     <dependency>
-      <groupId>com.github.leeyazhou</groupId>
-      <artifactId>okhttp-ja3-shade</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcutil-jdk18on</artifactId>
     </dependency>

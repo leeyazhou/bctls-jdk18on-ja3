@@ -5,10 +5,10 @@
   <parent>
     <groupId>com.github.leeyazhou</groupId>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
-    <version>1.78.1.1</version>
+    <version>1.78.1.2</version>
   </parent>
   <artifactId>bctls-jdk18on-ja3</artifactId>
-  <version>1.78.1.1</version>
+  <version>1.78.1.2</version>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -16,10 +16,6 @@
     </license>
   </licenses>
   <dependencies>
-    <dependency>
-      <groupId>com.github.leeyazhou</groupId>
-      <artifactId>okhttp-ja3-shade</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcutil-jdk18on</artifactId>
