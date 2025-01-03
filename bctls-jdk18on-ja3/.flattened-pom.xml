@@ -5,10 +5,10 @@
   <parent>
     <groupId>com.github.leeyazhou</groupId>
     <artifactId>bctls-jdk18on-ja3-parent</artifactId>
-    <version>1.78.1.2</version>
+    <version>1.78.1.3</version>
   </parent>
   <artifactId>bctls-jdk18on-ja3</artifactId>
-  <version>1.78.1.2</version>
+  <version>1.78.1.3</version>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
