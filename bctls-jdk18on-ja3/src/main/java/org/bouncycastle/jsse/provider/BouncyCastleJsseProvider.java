@@ -22,7 +22,7 @@ import org.bouncycastle.util.Strings;
 public class BouncyCastleJsseProvider
     extends Provider
 {
-    public static final String PROVIDER_NAME = "BCJSSE";
+    public static final String PROVIDER_NAME = "BCJSSE-JA3";
 
     private static final String JSSE_CONFIG_PROPERTY = "org.bouncycastle.jsse.config";
 
