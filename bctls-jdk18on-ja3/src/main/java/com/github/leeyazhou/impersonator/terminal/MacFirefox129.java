@@ -2,7 +2,6 @@ package com.github.leeyazhou.impersonator.terminal;
 
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 import org.bouncycastle.tls.ExtensionType;
@@ -31,16 +30,16 @@ public class MacFirefox129 extends AbstractImpersonatorFactory implements TlsExt
 
   @Override
   public void fillRequestHeaders(Map<String, String> headers) {
-    Locale locale = Locale.getDefault();
-    headers.put("Accept",
-        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8");
-    headers.put("Accept-Language",
-        String.format("%s,%s;q=0.5", locale.toString().replace('_', '-'), locale.getLanguage()));
-    headers.put("Sec-Fetch-Dest", "document");
-    headers.put("Sec-Fetch-Mode", "navigate");
-    headers.put("Sec-Fetch-Site", "none");
-    headers.put("Sec-Fetch-User", "?1");
-    headers.put("Upgrade-Insecure-Requests", "1");
+    // Locale locale = Locale.getDefault();
+    // headers.put("Accept",
+    // "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8");
+    // headers.put("Accept-Language",
+    // String.format("%s,%s;q=0.5", locale.toString().replace('_', '-'), locale.getLanguage()));
+    // headers.put("Sec-Fetch-Dest", "document");
+    // headers.put("Sec-Fetch-Mode", "navigate");
+    // headers.put("Sec-Fetch-Site", "none");
+    // headers.put("Sec-Fetch-User", "?1");
+    // headers.put("Upgrade-Insecure-Requests", "1");
   }
 
   @Override

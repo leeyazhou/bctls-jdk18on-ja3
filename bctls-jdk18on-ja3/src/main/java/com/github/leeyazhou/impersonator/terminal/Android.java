@@ -1,7 +1,6 @@
 package com.github.leeyazhou.impersonator.terminal;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 import org.bouncycastle.tls.CertificateCompressionAlgorithm;
@@ -37,12 +36,12 @@ public class Android extends AbstractImpersonatorFactory implements TlsExtension
 
   @Override
   public void fillRequestHeaders(Map<String, String> headers) {
-    Locale locale = Locale.getDefault();
-    headers.put("Accept-Language",
-        String.format("%s,%s;q=0.5", locale.toString().replace('_', '-'), locale.getLanguage()));
-    headers.put("Sec-Fetch-Dest", "empty");
-    headers.put("Sec-Fetch-Mode", "navigate");
-    headers.put("Sec-Fetch-Site", "none");
+    // Locale locale = Locale.getDefault();
+    // headers.put("Accept-Language",
+    // String.format("%s,%s;q=0.5", locale.toString().replace('_', '-'), locale.getLanguage()));
+    // headers.put("Sec-Fetch-Dest", "empty");
+    // headers.put("Sec-Fetch-Mode", "navigate");
+    // headers.put("Sec-Fetch-Site", "none");
   }
 
   @Override
