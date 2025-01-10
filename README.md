@@ -47,3 +47,7 @@ website for no obvious reason, you can give `impersonator` a try.
 ## Features
 - Supports TLS/JA3/JA4 fingerprints impersonation.
 - Supports HTTP/2 fingerprints impersonation.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=leeyazhou/bctls-jdk18on-ja3&type=Date)](https://star-history.com/#leeyazhou/bctls-jdk18on-ja3&Date)
