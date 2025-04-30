@@ -41,7 +41,7 @@
     <maven.compiler.target>8</maven.compiler.target>
     <maven.test.skip>false</maven.test.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <revision>1.78.1.4</revision>
+    <revision>1.78.1.5</revision>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -181,6 +181,24 @@
               <goal>clean</goal>
             </goals>
             <phase>clean</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </configuration>
           </execution>
         </executions>
       </plugin>
