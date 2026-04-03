@@ -30,8 +30,7 @@ class ImpersonateSSLSocketWrap extends ProvSSLSocketWrap {
     }
 
     static void checkCipherSuites(ContextData contextData, int[] cipherSuites) {
-        ProvSSLContextSpi context = contextData.getContext();
-        List<String> supportedCipherSuites = Arrays.asList(context.getSupportedCipherSuites());
+        List<String> supportedCipherSuites = Arrays.asList(contextData.getSupportedCipherSuites());
         for (int cipherSuite : cipherSuites) {
             if (GreaseUtil.isGrease(cipherSuite)) {
                 continue;

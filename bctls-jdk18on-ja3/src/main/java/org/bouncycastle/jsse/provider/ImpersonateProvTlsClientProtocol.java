@@ -1,13 +1,12 @@
 package org.bouncycastle.jsse.provider;
 
-import org.bouncycastle.tls.TlsSession;
-
-import com.github.leeyazhou.impersonator.Impersonator;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import org.bouncycastle.tls.TlsSession;
+import com.github.leeyazhou.impersonator.ExtensionOrder;
+import com.github.leeyazhou.impersonator.Impersonator;
 
 class ImpersonateProvTlsClientProtocol extends ProvTlsClientProtocol {
 
@@ -30,10 +29,18 @@ class ImpersonateProvTlsClientProtocol extends ProvTlsClientProtocol {
 
     @Override
     protected void sendClientHelloMessage() throws IOException {
+        ExtensionOrder extensionOrder;
         try {
-            impersonator.onSendClientHelloMessage(clientHello, clientExtensions);
+            extensionOrder = impersonator.onSendClientHelloMessage(clientHello, clientExtensions);
         } catch (IOException e) {
             throw new IllegalStateException("sendClientHelloMessage", e);
+        }
+        int[] supportedGroups = impersonator.getKeyShareGroups();
+        if(supportedGroups != null && supportedGroups.length > 0) {
+            this.clientAgreements = ImpersonateTlsClientProtocol.updateKeyShareToClientHello(tlsClientContext, clientExtensions, supportedGroups);
+        }
+        if (extensionOrder != null) {
+            extensionOrder.sort(clientExtensions);
         }
         super.sendClientHelloMessage();
     }

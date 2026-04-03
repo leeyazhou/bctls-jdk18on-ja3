@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-
 import com.github.leeyazhou.impersonator.Impersonator;
 
 class ImpersonateSSLSocketFactory extends ProvSSLSocketFactory {

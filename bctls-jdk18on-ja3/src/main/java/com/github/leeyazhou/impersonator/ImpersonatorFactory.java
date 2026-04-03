@@ -14,6 +14,7 @@ public interface ImpersonatorFactory {
 
   SSLContext newSSLContext(KeyManager[] km, TrustManager[] tm);
 
+  void setExtensionListener(ExtensionListener extensionListener);
   // void setExtensionListener(TlsExtensionListener extensionListener);
 
   /**

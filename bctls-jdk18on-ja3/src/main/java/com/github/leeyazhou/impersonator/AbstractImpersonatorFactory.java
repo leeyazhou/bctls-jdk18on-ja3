@@ -64,6 +64,8 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
   }
 
   private final int[] cipherSuites;
+  protected ExtensionListener extensionListener;
+
 
   protected AbstractImpersonatorFactory(String cipherSuites) {
     String[] tokens = cipherSuites.split("-");
@@ -177,6 +179,11 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
   }
 
   @Override
+  public void setExtensionListener(ExtensionListener extensionListener) {
+    this.extensionListener = extensionListener;
+  }
+
+  @Override
   public void onEstablishSession(Map<Integer, byte[]> clientExtensions) throws IOException {
     clientExtensions.put(ExtensionType.renegotiation_info, TlsUtils.encodeOpaque8(TlsUtils.EMPTY_BYTES));
   }
@@ -191,16 +198,18 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
   }
 
   @Override
-  public final void onSendClientHelloMessage(ClientHello clientHello, Map<Integer, byte[]> clientExtensions)
+  public final ExtensionOrder onSendClientHelloMessage(ClientHello clientHello, Map<Integer, byte[]> clientExtensions)
       throws IOException {
     clientExtensions.remove(ExtensionType.status_request_v2);
     clientExtensions.remove(ExtensionType.encrypt_then_mac);
-    onSendClientHelloMessageInternal(clientExtensions);
+    ExtensionOrder extensionOrder = onSendClientHelloMessageInternal(clientExtensions);
     onClientExtensionsBuilt(clientHello, clientExtensions);
+    return extensionOrder;
   }
 
 
-  protected abstract void onSendClientHelloMessageInternal(Map<Integer, byte[]> clientExtensions) throws IOException;
+  protected abstract ExtensionOrder onSendClientHelloMessageInternal(Map<Integer, byte[]> clientExtensions)
+      throws IOException;
 
 
   @Override
@@ -208,6 +217,10 @@ public abstract class AbstractImpersonatorFactory implements ImpersonatorFactory
     return cipherSuites;
   }
 
+  @Override
+  public int[] getKeyShareGroups() {
+    return null;
+  }
 
 
 }

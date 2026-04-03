@@ -1,7 +1,6 @@
 package org.bouncycastle.jsse.provider;
 
 import org.bouncycastle.tls.TlsClientProtocol;
-
 import com.github.leeyazhou.impersonator.Impersonator;
 
 class ImpersonateSSLEngine extends ProvSSLEngine {

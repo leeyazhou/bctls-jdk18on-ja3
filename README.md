@@ -10,7 +10,7 @@ bctls-jdk18on-ja3
 <dependency>
   <groupId>com.github.leeyazhou</groupId>
   <artifactId>bctls-jdk18on-ja3-shade</artifactId>
-  <version>1.78.1.0</version>
+  <version>1.82-1</version>
 </dependency>
 ```
 

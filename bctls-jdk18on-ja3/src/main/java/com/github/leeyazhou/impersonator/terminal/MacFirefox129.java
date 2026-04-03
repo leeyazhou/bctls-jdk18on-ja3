@@ -1,11 +1,9 @@
 package com.github.leeyazhou.impersonator.terminal;
 
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.Map;
-import java.util.Vector;
+import org.bouncycastle.tls.CertificateCompressionAlgorithm;
 import org.bouncycastle.tls.ExtensionType;
-import org.bouncycastle.tls.KeyShareEntry;
 import org.bouncycastle.tls.NamedGroup;
 import org.bouncycastle.tls.PskKeyExchangeMode;
 import org.bouncycastle.tls.SignatureAndHashAlgorithm;
@@ -14,6 +12,7 @@ import org.bouncycastle.tls.TlsExtensionsUtils;
 import org.bouncycastle.tls.TlsUtils;
 import org.bouncycastle.util.encoders.Hex;
 import com.github.leeyazhou.impersonator.AbstractImpersonatorFactory;
+import com.github.leeyazhou.impersonator.ExtensionOrder;
 import com.github.leeyazhou.impersonator.TlsExtensionHandler;
 import com.github.leeyazhou.impersonator.http.Http2Connection;
 import com.github.leeyazhou.impersonator.http.PriorityFrame;
@@ -58,7 +57,12 @@ public class MacFirefox129 extends AbstractImpersonatorFactory implements TlsExt
   }
 
   @Override
-  protected void onSendClientHelloMessageInternal(Map<Integer, byte[]> clientExtensions) throws IOException {
+  public int[] getKeyShareGroups() {
+    return new int[] {NamedGroup.X25519MLKEM768, NamedGroup.x25519, NamedGroup.secp256r1};
+  }
+
+  @Override
+  protected ExtensionOrder onSendClientHelloMessageInternal(Map<Integer, byte[]> clientExtensions) throws IOException {
     clientExtensions.put(ExtensionType.session_ticket, TlsUtils.EMPTY_BYTES);
     addSignatureAlgorithmsExtension(clientExtensions,
         SignatureAndHashAlgorithm.create(SignatureScheme.ecdsa_secp256r1_sha256),
@@ -76,20 +80,18 @@ public class MacFirefox129 extends AbstractImpersonatorFactory implements TlsExt
         SignatureAndHashAlgorithm.create(SignatureScheme.ecdsa_secp384r1_sha384),
         SignatureAndHashAlgorithm.create(SignatureScheme.ecdsa_secp521r1_sha512),
         SignatureAndHashAlgorithm.create(SignatureScheme.ecdsa_sha1));
-    addSupportedGroupsExtension(clientExtensions, NamedGroup.x25519, NamedGroup.secp256r1, NamedGroup.secp384r1,
-        NamedGroup.secp521r1, NamedGroup.ffdhe2048, NamedGroup.ffdhe3072);
+    addSupportedGroupsExtension(clientExtensions, NamedGroup.X25519MLKEM768, NamedGroup.x25519, NamedGroup.secp256r1,
+        NamedGroup.secp384r1, NamedGroup.secp521r1, NamedGroup.ffdhe2048, NamedGroup.ffdhe3072);
     TlsExtensionsUtils.addRecordSizeLimitExtension(clientExtensions, 0x4000);
     TlsExtensionsUtils.addPSKKeyExchangeModesExtension(clientExtensions, new short[] {PskKeyExchangeMode.psk_dhe_ke});
     clientExtensions.put(ExtensionType.encrypted_client_hello, Hex.decodeStrict(
         "000001000138002054b1fcc8868629a9ec88d5b183f9e26917229f69035b4ac94e833dd431bc4a5e00902f73c090762306de7f3fe1bd8d6ea5e4a577715d7385301e7340140f2970e5e58ad4c6584456035ec1f079afbbba4ad0e1292e3b7dfc3f9305a863e4b152c6880def239a16843469fbc2a46846b2a2007b6d97a4d5f897f5d6df2b33b31e3f306ac3f4fe5d229dfffe3dcf209c710430d8f4bb97b86be8ef1437425a3c693dfed5afa5c7ad0b84965060bd10d805cee0"));
-    Vector<KeyShareEntry> keyShareEntries = TlsExtensionsUtils.getKeyShareClientHello(clientExtensions);
-    if (keyShareEntries != null) {
-      byte[] keyExchange = new byte[65];
-      new SecureRandom().nextBytes(keyExchange);
-      keyShareEntries.add(new KeyShareEntry(NamedGroup.secp256r1, keyExchange));
-      TlsExtensionsUtils.addKeyShareClientHello(clientExtensions, keyShareEntries);
-    }
-    randomExtension(clientExtensions, "0-23-65281-10-11-35-16-5-34-51-43-13-45-28-65037", false);
+    clientExtensions.put(ExtensionType.signed_certificate_timestamp, TlsUtils.EMPTY_BYTES);
+    clientExtensions.remove(ExtensionType.key_share);
+    TlsExtensionsUtils.addCompressCertificateExtension(clientExtensions,
+        new int[] {CertificateCompressionAlgorithm.zlib, CertificateCompressionAlgorithm.brotli,
+            CertificateCompressionAlgorithm.zstd});
+    return new ExtensionOrder("0-23-65281-10-11-35-16-5-34-41-18-51-43-13-45-28-27-65037", false);
   }
 
 }
